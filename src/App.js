@@ -29,9 +29,9 @@ class App extends Component {
 	componentDidMount(){
 		// register dexag callback for status messages
 		sdk.registerStatusHandler((status, data)=>{
-		  this.setState({web3Status: {status, data}})
-		  this.timeoutStatus(status)
-		  console.log(status)
+			this.setState({web3Status: {status, data}})
+			this.timeoutStatus(status)
+			console.log(status)
 		});
 		// find the price for default pair
 		this.findTrades()
@@ -57,8 +57,8 @@ class App extends Component {
 		// wait for user to stop typing
 		if(this.timeout) clearTimeout(this.timeout);
 	    this.timeout = setTimeout(() => {
-	      this.findTrades()
-	  }, 1000);
+			this.findTrades()
+		}, 1000);
 	}
 	changeToken = (type, token) =>{
 		var pair = this.state.pair;
@@ -92,6 +92,9 @@ class App extends Component {
 		return (
 			<div className="app">
 				<div className="info">
+					<a href="https://dex.ag">
+						<img src="/logo.svg" />
+					</a>
 					<h3>Trade at the best price with a few lines of code</h3>
 					<a href="">Learn more about the DEX.AG SDK</a>
 				</div>
