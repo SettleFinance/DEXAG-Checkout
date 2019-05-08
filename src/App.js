@@ -41,11 +41,9 @@ class App extends Component {
 		// reset order in UI
 		this.setState({order: orderModel})
 		// get the best price for the pair and amount
-		sdk.getBest({to: pair.to, from: pair.from, amount: amount}).then(async(result)=>{
-			// update UI
-			this.setState({order: result})
-			console.log(result)
-		})
+		let trade = await sdk.getBest({to: pair.to, from: pair.from, amount: amount})
+		this.setState({order: trade})
+		console.log(trade)
 	}
 	changeAmount = (amount) => {
 		// amount isnt a real number
@@ -96,7 +94,7 @@ class App extends Component {
 						<img src="/logo.svg" />
 					</a>
 					<h3>Trade at the best price with a few lines of code</h3>
-					<a href="">Learn more about the DEX.AG SDK</a>
+					<a href="https://docs.dex.ag">Learn more about the DEX.AG SDK</a>
 				</div>
 				<div className="container">
 					<div className="title">

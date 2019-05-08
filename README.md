@@ -19,14 +19,19 @@ The DEXAG SDK is used to get the best price for a given trading pair and amount.
 import {DEXAG} from 'dexag-sdk'
 const sdk = new DEXAG();
 
+// receive status messages as the client executes the trade
+sdk.registerStatusHandler((status, data)=>{
+	console.log(status, data)
+});
+
 // get trade
 const trade = await sdk.getBest({to: 'DAI', from: 'ETH', amount: 1})
 
 // checkout
-const valid = await sdk.validateWeb3(order);
+const valid = await sdk.validateWeb3(trade);
 if (valid) {
 	// web3 is valid, trade order
-	sdk.tradeOrder({tx: order}); /** Metamask opens **/
+	sdk.tradeOrder({tx: trade}); /** Metamask opens **/
 }
 
 ```
